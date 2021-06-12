@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单数据收集</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<form id="form">
+    <span>用户名:</span>
+    <label>
+        <input type="text" v-model="user.user_name" value="user_name">
+    </label><br>
+    <span>性别:</span>
+    <input type="radio" id="female" value="female" v-model="user.sex"><label for="female">女</label>
+    <input type="radio" id="male" value="male" v-model="user.sex"> <label for="male"> 男</label><br>
+    <span>爱好</span>
+    <input type="checkbox" id="basketball" value="basketball" v-model="user.hobby"><label for="basketball">篮球</label>
+    <input type="checkbox" id="baseball" value="baseball" v-model="user.hobby"><label for="baseball">网球</label>
+    <input type="checkbox" id="singer" value="singer" v-model="user.hobby"><label for="singer">唱歌</label><br>
+    <span>城市: </span>
+    <label>
+        <select v-model="user.cityId">
+            <option value="">未选择</option>
+            <option v-for="city in allCity" :key="city.id" :value="city.id">{{city.value}}</option>
+        </select>
+    </label><br>
+    <span>介绍: </span>
+    <label>
+        <textarea rows="10" v-model="user.info"></textarea>
+    </label><br>
+
+    <input type="submit" value="注册" @click.prevent="register">
+</form>
+
+</body>
+<script>
+    new Vue({
+        el: '#form',
+        data: {
+            allCity: [
+                {id: 1, value: '杭州'},
+                {id: 2, value: '武汉'},
+                {id: 3, value: '上海'},
+            ],
+            user: {
+                user_name: '',
+                sex: 'female',
+                // checkbox 的默认值
+                hobby: ['singer'],
+                cityId: 1,
+                info: ''
+            }
+        },
+        methods: {
+            register() {
+                alert(JSON.stringify(this.user))
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <label>
+        <input type="text" v-model="searchName"/>
+    </label>
+    <ul>
+        <li v-for="(p,index) in filterPersons" :key="p.id">
+            {{p.id}} --> {{p.name}} --> {{p.age}}
+        </li>
+    </ul>
+    <button @click="sortType=2">按照年龄升序</button>
+    <button @click="sortType=3">按照年龄降序</button>
+    <button @click="sortType=1">原本顺序</button>
+</div>
+<script>
+
+    new Vue({
+            el: '#app',
+            data: {
+                searchName: '',
+                sortType: 1, // 1 不排序  2 按照年龄升序  3 按照年龄降序
+                person: [
+                    {id: 1, name: "yx", age: 22},
+                    {id: 2, name: "xs", age: 23}
+                ]
+            },
+            computed: {
+                filterPersons() {
+                    const {searchName, person, sortType} = this
+                    // 按照姓名模糊搜索
+                    const arr = person.filter((p, index) => {
+                        return p.name.indexOf(searchName) !== -1
+                    })
+
+                    if (sortType !== 1) {
+                        arr.sort((p1, p2) => {
+                            if (sortType === 2) {
+                                return p1.age - p2.age
+                            } else {
+                                return p2.age - p1.age
+                            }
+                        })
+                    }
+                    return arr
+
+                }
+            }
+
+        }
+    )
+</script>
+</body>
+</html>

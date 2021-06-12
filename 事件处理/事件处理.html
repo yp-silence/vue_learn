@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>监听绑定</h2>
+    <button @click="test1">test111</button>
+    <button @click="test2('mix')">test222</button>
+    <button @click="test3('呵呵哒',$event)">test333</button>
+    <h2>2.事件修饰符</h2>
+    <!--  @click.prevent 可以阻止默认行为  -->
+    <a href="https://www.baidu.com" @click.prevent="test4">search</a>
+    <div style="width: 200px;height: 200px;background: purple"
+         @click="test5"
+    >
+        <!--   @click.stop 可以阻止事件冒泡     -->
+        <div style="width: 100px;height: 100px;background: skyblue"
+             @click.stop="test6"></div>
+    </div>
+    <h3>3.按键修饰符</h3>
+    <label>
+        <input type="text" v-model="msg" @keyup.enter="test7">
+    </label>
+
+</div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: ''
+        },
+        methods: {
+            test1(event) {
+                alert(event.target.innerText)
+            },
+            test2(msg) {
+                alert(msg)
+            },
+            test3(msg, event) {
+                alert(event.target.innerText + '-->' + msg)
+            },
+            test4() {
+                alert('a标签不跳转')
+            },
+            test5() {
+                alert('click outer')
+            },
+            test6() {
+                alert('click inner')
+            },
+            test7(event) {
+                if (this.msg !== '') alert(this.msg)
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .success{
+            color: plum;
+        }
+        .failure{
+            color:gray;
+        }
+    </style>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+    <!-- :class="{success:ok} 条件渲染 ok值为true才添加次属性   -->
+    <!--  v-for 将不显示的直接在内存中删除 当属性值改变时 重新 将不显示的元素重新渲染 -->
+     <p v-if="ok" :class="{success:ok}">表白成功</p>
+     <p v-else  :class="{failure:!ok}">表白失败</p>
+     <!--  v-show 通过控制 display 属性的值来控制是否显示   -->
+     <p v-show="ok" :class="{success:ok}">求婚成功</p>
+     <p v-show="!ok" :class="{failure:!ok}">求婚失败</p>
+     <button @click="ok=!ok">切换</button>
+ </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            ok: false
+        }
+    })
+</script>
+</html>

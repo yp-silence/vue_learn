@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <h3>对象遍历</h3>
+  <ol>
+    <li v-for="val in person" :key="val.id">
+      id:{{val.id}}<br>
+        姓名:{{val.name}}<br>
+        年龄:{{val.age}}<br>
+        <button @click="delItem(index)">删除</button>
+        <button @click="updateItem(index,{id:new Date(),name:'silence',age:28})">更新</button>
+
+    </li>
+  </ol>
+</div>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      person:[
+        {id:1,name:"yx",age:22},
+        {id:2,name:"xs",age:23}
+      ]
+    },
+      methods:{
+          delItem(index){
+              this.person.splice(index,1)
+          },
+          updateItem(index,p){
+              this.person.splice(index,1,p)
+          }
+      }
+
+  })
+</script>
+</html>
