@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板语法</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>1.双大括号|插值</h3>
+    <p>{{msg}}</p>
+    <h3>指令</h3>
+    <p>2.1 强制数据绑定</p>
+    <a v-bind:href="url">去学习</a><br>
+    <a :href="url">去学习.简写</a>
+    <p>2.2 数据监听</p>
+    <button v-on:click="test_alert">我是按钮1</button>
+    <br>
+    <button @click="test_alert">我是按钮2</button>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: 'i will be back',
+            url: "https://www.baidu.com"
+        },
+        methods: {
+            test_alert(event) {
+                alert(event.target.innerText);
+            }
+        }
+    })
+</script>
+</html>

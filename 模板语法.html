@@ -1,0 +1,24 @@
+<html>
+<script src='js/vue.js'></script>
+<body>
+<div id='app'>
+    <h2>1. 双大括号|插值</h2>
+    <p>{{msg}}</p>
+    <!-- 支持函数 转化为大写 -->
+    <p>{{msg.toUpperCase()}}</p>
+    <h2>2.指令</h2>
+    <p>2.1强制数据绑定</p>
+    <!-- 属性的值是动态的 -->
+    <a v-bind:href='url'>去学习</a>
+</div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: 'i will back !',
+            url: 'http://www.baidu.com'
+        }
+    })
+</script>
+</html>

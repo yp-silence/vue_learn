@@ -1,0 +1,21 @@
+<html>
+<script src='js/vue.js'></script>
+<body>
+<div id='test'>
+    <input type="text" v-model='msg'>
+    <p>hello {{msg}}</p>
+</div>
+<script>
+    new Vue({
+        // 配置对象
+        el: '#test',
+        /*
+          包含一些数据属性的对象
+        */
+        data: {
+            msg: 'atguigu'
+        }
+    })
+</script>
+</body>
+</html>
